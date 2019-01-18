@@ -13,7 +13,7 @@ public  class  SfExpressConstant {
     /**
      * 顾客编码
      */
-    public static final String CLIENT_CODE = "XXXXX";
+    public static final String CLIENT_CODE = "XXXX";
 
     /**
      * 校验码
