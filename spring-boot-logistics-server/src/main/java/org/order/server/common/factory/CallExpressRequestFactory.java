@@ -7,6 +7,7 @@ import org.order.server.request.body.Body;
 import org.order.server.request.order.Order;
 import org.order.server.request.order.OrderConfirm;
 import org.order.server.request.order.OrderSearch;
+import org.order.server.request.order.RouteRequest;
 import org.springframework.stereotype.Component;
 /**
  * Created by fx on 2019/1/16.
@@ -32,6 +33,10 @@ public class CallExpressRequestFactory {
             case OrderConfirmService:
                 //订单确认/取消
                 body.setOrderConfirm((OrderConfirm) object);
+                break;
+            case RouteService:
+                //订单确认/取消
+                body.setRouteRequest((RouteRequest) object);
                 break;
             default:
         }

@@ -13,12 +13,12 @@ public  class  SfExpressConstant {
     /**
      * 顾客编码
      */
-    public static final String CLIENT_CODE = "XXXX";
+    public static final String CLIENT_CODE = "FX_xebG7";
 
     /**
      * 校验码
      */
-    public static final String CHECKWORD = "XXXXXX";
+    public static final String CHECKWORD = "vQDpJzoxHwLAZZPIcPCkLu7yFiSXUuD7";
 
     /**
      * 校验码

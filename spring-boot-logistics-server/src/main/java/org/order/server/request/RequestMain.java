@@ -3,6 +3,7 @@ package org.order.server.request;
 import com.sf.csim.express.service.CallExpressServiceTools;
 import org.order.server.common.constant.SfExpressConstant;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 

@@ -68,4 +68,12 @@ public class OrderServiceImpl implements OrderService{
         CallExpressResponse callExpressResponse =xmlBuilder.convertToObject(respXml,CallExpressResponse.class);
         return callExpressResponse;
     }
+
+    @Override
+    public CallExpressResponse queryRouteInfo(RouteRequest routeRequest) {
+        String reqXml = xmlBuilder.convertToXml(callExpressRequestFactory.createRequestBean(routeRequest,ServiceName.RouteService));
+        String respXml = callExpressRequestUtil.getOrder(reqXml);
+        CallExpressResponse callExpressResponse =xmlBuilder.convertToObject(respXml,CallExpressResponse.class);
+        return callExpressResponse;
+    }
 }

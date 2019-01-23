@@ -200,6 +200,10 @@ public class CallExpressResponse implements Serializable{
         //运单号
         @XmlAttribute(name = "mailno")
         private String mailNo;
+        //订单号
+        @XmlAttribute(name = "orderid")
+        private String orderid;
+
         //路由
         @XmlElement(name = "Route")
         private List<Route> Route ;
@@ -219,6 +223,14 @@ public class CallExpressResponse implements Serializable{
         public void setRoute(List<CallExpressResponse.Route> route) {
             Route = route;
         }
+
+        public String getOrderid() {
+            return orderid;
+        }
+
+        public void setOrderid(String orderid) {
+            this.orderid = orderid;
+        }
     }
 
     @XmlRootElement(name="Route")
@@ -227,7 +239,9 @@ public class CallExpressResponse implements Serializable{
         //路由节点发生的时间
         @XmlAttribute(name = "accept_time")
         private String acceptTime;
-
+        //路由节点发生的地点
+        @XmlAttribute(name = "accept_address")
+        private String acceptddress;
         //路由节点具体描述
         @XmlAttribute(name = "remark")
         private String remark;
@@ -258,6 +272,14 @@ public class CallExpressResponse implements Serializable{
 
         public void setOpcode(String opcode) {
             this.opcode = opcode;
+        }
+
+        public String getAcceptddress() {
+            return acceptddress;
+        }
+
+        public void setAcceptddress(String acceptddress) {
+            this.acceptddress = acceptddress;
         }
     }
 

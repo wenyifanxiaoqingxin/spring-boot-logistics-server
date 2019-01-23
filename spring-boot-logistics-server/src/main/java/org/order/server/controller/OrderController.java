@@ -4,6 +4,7 @@ import org.order.server.common.ajax.AjaxResult;
 import org.order.server.common.constant.SfExpressConstant;
 import org.order.server.request.order.OrderConfirm;
 import org.order.server.request.order.OrderSearch;
+import org.order.server.request.order.RouteRequest;
 import org.order.server.response.CallExpressResponse;
 import org.order.server.service.OrderService;
 import org.order.server.common.util.UUIDUtils;
@@ -57,7 +58,7 @@ public class OrderController {
 
             if(SfExpressConstant.SfEXPRESS_ERR.equals(callExpressResponse.getHead())){
                 ajaxResult.setCode(AjaxResult.FAIL);
-                ajaxResult.setMessage("查询失败:"+callExpressResponse.getERROR());
+                ajaxResult.setMessage("查询失败:"+callExpressResponse.getERROR().getText());
             }else{
                 ajaxResult.setCode(AjaxResult.SUCCESS);
                 ajaxResult.setMessage("查询成功");
@@ -81,14 +82,38 @@ public class OrderController {
 
             if(SfExpressConstant.SfEXPRESS_ERR.equals(callExpressResponse.getHead())){
                 ajaxResult.setCode(AjaxResult.FAIL);
-                ajaxResult.setMessage("查询失败:"+callExpressResponse.getERROR());
+                ajaxResult.setMessage("操作失败:"+callExpressResponse.getERROR().getText());
             }else if(SfExpressConstant.RETURN_CODE_TWO.equals(callExpressResponse.getBody().getOrderConfirmResponse().getRes_status())){
                 ajaxResult.setCode(AjaxResult.SUCCESS);
-                ajaxResult.setMessage("查询成功");
+                ajaxResult.setMessage("操作失败");
                 ajaxResult.setData(callExpressResponse.getBody());
             }else{
                 ajaxResult.setCode(AjaxResult.FAIL);
                 ajaxResult.setMessage("操作失败，客户订单号与顺丰运单不匹配");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            ajaxResult.setCode(AjaxResult.SUCCESS);
+            ajaxResult.setMessage("操作失败");
+        }
+        return ajaxResult;
+
+    }
+
+    @RequestMapping("/routeRequest")
+    @ResponseBody
+    public AjaxResult routeRequest(@RequestBody RouteRequest routeRequest){
+        AjaxResult ajaxResult = new AjaxResult();
+        try{
+            CallExpressResponse callExpressResponse = orderService.queryRouteInfo(routeRequest);
+
+            if(SfExpressConstant.SfEXPRESS_ERR.equals(callExpressResponse.getHead())){
+                ajaxResult.setCode(AjaxResult.FAIL);
+                ajaxResult.setMessage("查询失败:"+callExpressResponse.getERROR().getText());
+            }else {
+                ajaxResult.setCode(AjaxResult.SUCCESS);
+                ajaxResult.setMessage("查询成功");
+                ajaxResult.setData(callExpressResponse.getBody());
             }
         }catch (Exception e){
             e.printStackTrace();
